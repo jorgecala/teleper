@@ -55,22 +55,23 @@ export class RegisterCompanyComponent implements OnInit {
       email_sending: [false],
       sms_sending: [false],
     });
-    console.log('Hola');
   }
 
   saveRegister() {
     if (this.formRegister.valid) {
       const data = {
+        id: 0,
         identification_type: this.formRegister.get('identification_type').value,
         identification_number: this.formRegister.get('identification_number').value,
         company_name: this.formRegister.get('company_name').value,
         first_name: this.formRegister.get('first_name').value,
+        id_company: 1,
         second_name: this.formRegister.get('second_name').value,
-        first_lastname: this.formRegister.get('first_lastname').value,
-        second_lastname: this.formRegister.get('second_lastname').value,
+        first_last_name: this.formRegister.get('first_lastname').value,
+        second_last_name: this.formRegister.get('second_lastname').value,
         email: this.formRegister.get('email').value,
-        email_sending: this.formRegister.get('email_sending').value,
-        sms_sending: this.formRegister.get('sms_sending').value,
+        authorize_sending_mobil: this.formRegister.get('email_sending').value,
+        authorize_sending_email: this.formRegister.get('sms_sending').value,
       }
       this.company.registerCompanyInformation(data).subscribe((response: any) => {
         if (response.isSuccess) {
