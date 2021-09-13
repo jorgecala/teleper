@@ -27,7 +27,7 @@
     <div class="alert my-4 alert-success" role="alert">
         La empresa se encuentra registrada en la Cámara de Comercio de Medellín para Antioquia. Para acceder al servicio de trámites virtuales se utilizarán los datos reportados en el registro.<br> Los campos marcados con (*) son obligatorios
     </div>
-    <form [formGroup]="formCompanyInformation" (ngSubmit)="goToRegister()">
+    <form [formGroup]="formCompanyInformation">
         <div class="row">
             <div class="col-lg-4 col-md-12 col-sm-12">
                 <div class="tp-form-group">
@@ -133,7 +133,7 @@
             </div>
         </div>
         <div class="d-flex align-items-center justify-content-center py-4">
-            <button type="button" class="btn btn-danger w-50">Continuar <i class="fas fa-arrow-right"></i></button>
+            <button type="button" class="btn btn-danger w-50" (click)="goToRegister()">Continuar <i class="fas fa-arrow-right"></i></button>
         </div>
     </form>
 </div>
