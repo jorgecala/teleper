@@ -1,3 +1,7 @@
+const url = '/'
+
 export const environment = {
-  production: true
+  production: true,
+  company: `${url}`,
+  dataTypes: `${url}`
 };

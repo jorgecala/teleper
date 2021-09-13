@@ -1,0 +1,132 @@
+<div class="container my-5">
+    <h4 class="pb-4 border-bottom">Registro al servicio</h4>
+    <div class="alert my-4 alert-info" role="alert">
+        Los campos marcados con (*) son obligatorios
+    </div>
+    <form [formGroup]="formRegister" (ngSubmit)="saveRegister()">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="identification_type">Tipo de identificación <span>*</span></label>
+                    <div class="input-container">
+                        <select class="tp-input input-container__select input-container__select--noicon" type="text" id="identification_type" formControlName="identification_type" (change)="viewFieldsDocument()">
+                        <option *ngFor="let data of documentTypes" [value]="data.id">{{ data.name }}</option>
+                      </select>
+                        <span class="input-container__select-arrow">
+                        <i class="fas fa-caret-down"></i>
+                      </span>
+                    </div>
+                    <small style="display: block;" class="text-danger" *ngIf="controlError('identification_type')?.required">
+                      Este campo es requerido
+                    </small>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="identification_number">Número de identificación <span>*</span></label>
+                    <div class="input-container">
+                        <input type="number" class="tp-input input-container__input input-container__input--noicon" id="identification_number" formControlName="identification_number" (keypress)="numericOnly($event)">
+                    </div>
+                    <small style="display: block;" class="text-danger" *ngIf="controlError('identification_number')?.required">
+                      Este campo es requerido
+                    </small>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="viewFields.JURIDIC_PERSON">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="company_name">Nombre de la compañía <span>*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="company_name" formControlName="company_name" (keypress)="alphabeticOnly($event)">
+                    </div>
+                    <small style="display: block;" class="text-danger" *ngIf="controlError('company_name')?.required">
+                      Este campo es requerido
+                    </small>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="viewFields.NATURAL_PERSON">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="first_name">Primer nombre <span>*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="first_name" formControlName="first_name" (keypress)="alphabeticOnly($event)">
+                    </div>
+                    <small style="display: block;" class="text-danger" *ngIf="controlError('first_name')?.required">
+                      Este campo es requerido
+                    </small>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="viewFields.NATURAL_PERSON">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="second_name">Segundo nombre</label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="second_name" formControlName="second_name" (keypress)="alphabeticOnly($event)">
+                    </div>
+                    <small style="display: block;" class="text-danger" *ngIf="controlError('second_name')?.required">
+                      Este campo es requerido
+                    </small>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="viewFields.NATURAL_PERSON">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="first_lastname">Primer apellido <span>*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="first_lastname" formControlName="first_lastname" (keypress)="alphabeticOnly($event)">
+                    </div>
+                    <small style="display: block;" class="text-danger" *ngIf="controlError('first_lastname')?.required">
+                    Este campo es requerido
+                  </small>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="viewFields.NATURAL_PERSON">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="second_lastname">Segundo apellido</label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="second_lastname" formControlName="second_lastname" (keypress)="alphabeticOnly($event)">
+                    </div>
+                    <small style="display: block;" class="text-danger" *ngIf="controlError('second_lastname')?.required">
+                  Este campo es requerido
+                </small>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="viewFields.JURIDIC_PERSON || viewFields.NATURAL_PERSON">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="email">Correo electrónico <span>*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="email" formControlName="email">
+                    </div>
+                    <small style="display: block;" class="text-danger" *ngIf="controlError('email')?.required">
+                      Este campo es requerido
+                    </small>
+                    <small class="text-danger" *ngIf="controlError('email')?.pattern">
+                      No es un email válido
+                    </small>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="tp-checkbox">
+                    <label class="tp-checkbox__container">
+                    <input class="tp-checkbox__input" type="checkbox" formControlName="email_sending"/>
+                    <span class="tp-checkbox__checkmark"></span>
+                  </label>
+                    <label class="tp-checkbox__label">
+                     Autorizo el envío de mensaje de texto al número registrado.
+                  </label>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="tp-checkbox">
+                    <label class="tp-checkbox__container">
+                    <input class="tp-checkbox__input" type="checkbox" formControlName="email_sending"/>
+                    <span class="tp-checkbox__checkmark"></span>
+                  </label>
+                    <label class="tp-checkbox__label">
+                     Autorizo el envío de mensajes al correo electrónico registrado.
+                  </label>
+                </div>
+            </div>
+        </div>
+        <div class="actions py-4">
+            <button class="btn btn-danger" type="submit">Continuar <i class="fas fa-arrow-right"></i></button>
+            <button class="btn btn-dark" type="button" [routerLink]="['/']"><i class="fas fa-arrow-left"></i> Regresar</button>
+        </div>
+    </form>
+</div>

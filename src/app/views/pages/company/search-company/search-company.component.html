@@ -1,0 +1,135 @@
+<div class="container my-5">
+    <h4 class="pb-4 border-bottom">Inscripción al servicio</h4>
+    <p>Ingrese el NIT de la persona natural o jurídica para la que realizará el trámite, sin incluir el dígito de verificación. Luego seleccione <b>Continuar</b> para completar la solicitud.</p>
+    <form [formGroup]="formByNit" (ngSubmit)="searchByNit()">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="nit">NIT <span>*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="nit" placeholder="Digite el NIT" formControlName="nit" (keypress)="numericOnly($event)" (keyup.enter)="searchByNit()">
+                    </div>
+                    <small style="display: block;" class="text-danger" *ngIf="controlError('nit')?.required">
+                Este campo es requerido
+              </small>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="d-flex align-items-center justify-content-center py-4">
+                    <button type="submit" class="btn btn-danger w-75">Continuar <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container my-5">
+    <h4 class="pb-4 border-bottom">Datos de la persona natural o jurídica que solicita el servicio de trámites virtuales:</h4>
+    <div class="alert my-4 alert-success" role="alert">
+        La empresa se encuentra registrada en la Cámara de Comercio de Medellín para Antioquia. Para acceder al servicio de trámites virtuales se utilizarán los datos reportados en el registro.<br> Los campos marcados con (*) son obligatorios
+    </div>
+    <form>
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="naturaleza">Naturaleza <span>*</span></label>
+                    <div class="input-container">
+                        <select class="tp-input input-container__select input-container__select--noicon" type="text" id="naturaleza" disabled>
+                          <option>{{ "Natural" }}</option>
+                        </select>
+                        <span class="input-container__select-arrow">
+                          <i class="fas fa-caret-down"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="razon_social">Nombre/Razón social <span>*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="razon_social" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="via">Vía <span>*</span></label>
+                    <div class="input-container">
+                        <select class="tp-input input-container__select input-container__select--noicon" type="text" id="via" disabled>
+                        <option>{{ "Carrera" }}</option>
+                      </select>
+                        <span class="input-container__select-arrow">
+                        <i class="fas fa-caret-down"></i>
+                      </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 col-6">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="nro1">Nro <span>*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="nro1" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 col-6">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="letra1">Letra</label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="letra1" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 col-6">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="nro2">Nro <span>*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="nro2" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-2 col-6">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="letra2">Letra</label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="letra2" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-8 col-sm-10">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="complementos">Nro y complementos <span>*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="complementos" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-12 col-sm-12">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="direccion">Dirección <span>*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="direccion" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="municipio">Municipio <span>*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="municipio" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="tp-form-group">
+                    <label class="tp-form-group__label" for="telefono1">Teléfono 1 <span>*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="tp-input input-container__input input-container__input--noicon" id="telefono1" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center py-4">
+            <button type="button" class="btn btn-danger w-50" (click)="goToRegister()">Continuar <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </form>
+</div>
