@@ -37,7 +37,7 @@ export class RegisterCompanyComponent implements OnInit {
       this.router.navigateByUrl('/');
     } else {
       this.company.listIdentification().subscribe((response: any) => {
-        this.documentTypes = response;
+        this.documentTypes = response.data;
       });
     }
   }
@@ -72,7 +72,7 @@ export class RegisterCompanyComponent implements OnInit {
         sms_sending: this.formRegister.get('sms_sending').value,
       }
       this.company.registerCompanyInformation(data).subscribe((response: any) => {
-        if (response) {
+        if (response.isSuccess) {
           this.popUp.successService('Registro exitoso', response.message, 'Cerrar');
         } else {
           this.popUp.noResponseService(response.message, 'Cerrar');

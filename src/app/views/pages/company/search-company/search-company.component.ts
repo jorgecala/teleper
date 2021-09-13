@@ -13,9 +13,23 @@ import { CompanyService } from '../../../../shared/services/company.service';
 export class SearchCompanyComponent implements OnInit {
 
   public formByNit: FormGroup;
+  public formCompanyInformation: FormGroup;
 
   public companyResponse = false;
   public responseCompany;
+
+  public personType = [
+    {
+      id: 1,
+      name: 'NATURAL'
+    },
+    {
+      id: 2,
+      name: 'JURÍDICA'
+    }
+  ];
+
+  public address;
 
   constructor(
     private fb: FormBuilder,
@@ -24,9 +38,11 @@ export class SearchCompanyComponent implements OnInit {
     private company: CompanyService)
     {
       this.createByNitForm();
+      this.createCompanyInformationForm();
     }
 
   ngOnInit(): void {
+
   }
 
   createByNitForm() {
@@ -35,13 +51,46 @@ export class SearchCompanyComponent implements OnInit {
     });
   }
 
+  createCompanyInformationForm() {
+    this.formCompanyInformation = this.fb.group({
+      naturaleza: [''],
+      razon_social: [''],
+      via: [''],
+      nro1: [''],
+      letra1: [''],
+      nro2: [''],
+      letra2: [''],
+      complementos: [''],
+      direccion: [''],
+      municipio: [''],
+      telefono1: [''],
+    });
+    this.formCompanyInformation.disable();
+  }
+
   searchByNit(){
     if (this.formByNit.valid) {
       var idNit = this.formByNit.get('nit').value;
       this.company.getCompanyInformation(idNit).subscribe((response: any) => {
-        if (response) {
+        if (response.isSuccess) {
           this.companyResponse = true;
-          this.responseCompany = response;
+          this.responseCompany = response.data;
+          var address = this.responseCompany.detailed_address;
+          address = address.replace(/,*/g, "");
+          this.address = address.split("|");
+          this.formCompanyInformation.patchValue({
+            naturaleza: this.responseCompany.type_of_nature,
+            razon_social: this.responseCompany.name_company,
+            via: this.address[0],
+            nro1: this.address[1],
+            letra1: this.address[2],
+            nro2: this.address[3],
+            letra2: this.address[4],
+            complementos: this.address[5],
+            direccion: this.responseCompany.address,
+            municipio: this.responseCompany.municipality,
+            telefono1: this.responseCompany.phone,
+          });
         } else {
           this.companyResponse = false;
           this.popUp.noResponseService(response.message, 'Cerrar');

@@ -23,17 +23,17 @@ export class CompanyService {
   }
 
   listIdentification() {
-    return this.getList('ListIdentificationTypes');
+    return this.getList('GetAllIdentificationType');
   }
 
-  registerCompanyInformation(creditRequest) {
-    const url = `${this.company}ApplyCredit`;
-    return this.http.post(url, creditRequest);
+  registerCompanyInformation(data) {
+    const url = `${this.company}Update`;
+    return this.http.post(url, data);
   }
 
-  getCompanyInformation(creditRequest) {
-    const url = `${this.company}WithdrawalCreditRequest`;
-    return this.http.post(url, creditRequest);
+  getCompanyInformation(nit) {
+    const url = `${this.company}GetCompanybyNit/${nit}`;
+    return this.http.get(url);
   }
 
 }
