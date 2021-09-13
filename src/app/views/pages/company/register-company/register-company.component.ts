@@ -55,6 +55,7 @@ export class RegisterCompanyComponent implements OnInit {
       email_sending: [false],
       sms_sending: [false],
     });
+    console.log('Hola');
   }
 
   saveRegister() {
