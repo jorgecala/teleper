@@ -17,13 +17,9 @@ export class CompanyService {
 
 
 
-  private getList(query: string) {
-    const url = `${this.dataTypes}${query}`;
-    return this.http.get(url).pipe(map((x: any) => x.result ));
-  }
-
   listIdentification() {
-    return this.getList('GetAllIdentificationType');
+    const url = `${this.dataTypes}GetAllIdentificationType`;
+    return this.http.get(url);
   }
 
   registerCompanyInformation(data) {
