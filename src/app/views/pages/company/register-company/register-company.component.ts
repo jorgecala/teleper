@@ -56,6 +56,7 @@ export class RegisterCompanyComponent implements OnInit {
             email_sending: this.actualInformation.authorize_sending_mobil,
             sms_sending: this.actualInformation.authorize_sending_email,
           });
+          this.viewFieldsDocument();
         }
       });
     }
