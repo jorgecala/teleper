@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PopupService } from '../../../../shared/services/popup.service';
 import { CompanyService } from '../../../../shared/services/company.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-company',
@@ -72,8 +73,8 @@ export class RegisterCompanyComponent implements OnInit {
       first_lastname: ['', [Validators.required]],
       second_lastname: [''],
       email: [null, [Validators.required, Validators.pattern(this.emailRegex)]],
-      email_sending: [false],
-      sms_sending: [false],
+      email_sending: [],
+      sms_sending: [],
     });
   }
 
@@ -95,7 +96,21 @@ export class RegisterCompanyComponent implements OnInit {
       }
       this.company.registerCompanyInformation(data).subscribe((response: any) => {
         if (response.isSuccess) {
-          this.popUp.successService('Registro exitoso', response.message, 'Cerrar');
+          Swal.fire({
+            icon: 'success',
+            title: 'Registro exitoso',
+            text: response.message,
+            confirmButtonText: 'Aceptar',
+            customClass: {
+              confirmButton: 'swalConfirmButton'
+            },
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          })
         } else {
           this.popUp.noResponseService(response.message, 'Cerrar');
         }
