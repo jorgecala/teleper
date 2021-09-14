@@ -54,8 +54,8 @@ export class RegisterCompanyComponent implements OnInit {
             first_lastname: this.actualInformation.first_last_name,
             second_lastname: this.actualInformation.second_last_name,
             email: this.actualInformation.email,
-            email_sending: this.actualInformation.authorize_sending_mobil,
-            sms_sending: this.actualInformation.authorize_sending_email,
+            email_sending: this.actualInformation.authorize_sending_email,
+            sms_sending: this.actualInformation.authorize_sending_mobil,
           });
           this.viewFieldsDocument();
         }
@@ -73,8 +73,8 @@ export class RegisterCompanyComponent implements OnInit {
       first_lastname: ['', [Validators.required]],
       second_lastname: [''],
       email: [null, [Validators.required, Validators.pattern(this.emailRegex)]],
-      email_sending: [],
-      sms_sending: [],
+      email_sending: [false],
+      sms_sending: [false],
     });
   }
 
@@ -91,8 +91,8 @@ export class RegisterCompanyComponent implements OnInit {
         first_last_name: this.formRegister.get('first_lastname').value,
         second_last_name: this.formRegister.get('second_lastname').value,
         email: this.formRegister.get('email').value,
-        authorize_sending_mobil: this.formRegister.get('email_sending').value,
-        authorize_sending_email: this.formRegister.get('sms_sending').value,
+        authorize_sending_mobil: this.formRegister.get('sms_sending').value,
+        authorize_sending_email: this.formRegister.get('email_sending').value,
       }
       this.company.registerCompanyInformation(data).subscribe((response: any) => {
         if (response.isSuccess) {
