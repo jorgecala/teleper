@@ -90,7 +90,7 @@ export class RegisterCompanyComponent implements OnInit {
 
   viewFieldsDocument() {
     const documentSelected = this.formRegister.get('identification_type').value;
-    if(documentSelected === '') {
+    if(documentSelected === '6') {
       this.viewFields.NATURAL_PERSON = false;
       this.viewFields.JURIDIC_PERSON = true;
       this.formRegister.controls['first_name'].clearValidators();
