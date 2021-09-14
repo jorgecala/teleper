@@ -25,7 +25,7 @@ export class CompanyService {
 
   registerCompanyInformation(data) {
     const url = `${this.companyUser}Update`;
-    return this.http.post(url, data);
+    return this.http.put(url, data);
   }
 
   getCompanyInformation(nit) {
