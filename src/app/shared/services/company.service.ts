@@ -24,7 +24,7 @@ export class CompanyService {
   }
 
   registerCompanyInformation(data) {
-    const url = `${this.company}Update`;
+    const url = `${this.companyUser}Update`;
     return this.http.post(url, data);
   }
 
@@ -34,7 +34,7 @@ export class CompanyService {
   }
 
   getActuallyInformation(nit) {
-    const url = `${this.company}Get/${nit}`;
+    const url = `${this.companyUser}Get/${nit}`;
     return this.http.get(url);
   }
 
