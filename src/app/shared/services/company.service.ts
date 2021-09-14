@@ -11,6 +11,7 @@ export class CompanyService {
 
   private dataTypes = environment.dataTypes;
   private company = environment.company;
+  private companyUser = environment.companyUser;
 
 
   constructor(private http: HttpClient) { }
