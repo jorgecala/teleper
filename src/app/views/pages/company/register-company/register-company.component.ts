@@ -21,6 +21,8 @@ export class RegisterCompanyComponent implements OnInit {
 
   public documentTypes;
 
+  public actualInformation;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -38,6 +40,23 @@ export class RegisterCompanyComponent implements OnInit {
     } else {
       this.company.listIdentification().subscribe((response: any) => {
         this.documentTypes = response.data;
+      });
+      this.company.getActuallyInformation(idNit).subscribe((response: any) => {
+        if (response.isSuccess) {
+          this.actualInformation = response.data;
+          this.formRegister.patchValue({
+            identification_type: this.actualInformation.identification_type,
+            identification_number: this.actualInformation.identification_number,
+            company_name: this.actualInformation.company_name,
+            first_name: this.actualInformation.first_name,
+            second_name: this.actualInformation.second_name,
+            first_lastname: this.actualInformation.first_last_name,
+            second_lastname: this.actualInformation.second_last_name,
+            email: this.actualInformation.email,
+            email_sending: this.actualInformation.authorize_sending_mobil,
+            sms_sending: this.actualInformation.authorize_sending_email,
+          });
+        }
       });
     }
   }

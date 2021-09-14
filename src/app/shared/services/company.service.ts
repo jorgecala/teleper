@@ -32,4 +32,9 @@ export class CompanyService {
     return this.http.get(url);
   }
 
+  getActuallyInformation(nit) {
+    const url = `${this.company}Get/${nit}`;
+    return this.http.get(url);
+  }
+
 }
